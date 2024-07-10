@@ -38,8 +38,8 @@
 <script src="vendors/babel.min.js"></script>
 <script type="text/babel">
     function Header() {
-        let [expanded, setExpanded] = React.useState(false);
-        let [toggled, setToggled] = React.useState(false);
+        let [ expanded, setExpanded ] = React.useState(false);
+        let [ toggled, setToggled ] = React.useState(false);
 
         const onClick = () => {
             if (!toggled) {
@@ -85,7 +85,8 @@
 
         return <li ref={ref} className={'event' + (props.slim ? ' event_slim' : '')}>
             <button className="event__button">
-                <span className={`event__icon event__icon_${props.icon}`} role="img" aria-label={props.iconLabel}></span>
+                <span className={`event__icon event__icon_${props.icon}`} role="img"
+                      aria-label={props.iconLabel}></span>
                 <h4 className="event__title">{props.title}</h4>
                 {props.subtitle &&
                     <span className="event__subtitle">{props.subtitle}</span>
@@ -97,7 +98,7 @@
     const TABS = {
         all: {
             title: 'Все',
-            items: [{
+            items: [ {
                 icon: 'light2',
                 iconLabel: 'Освещение',
                 title: 'Xiaomi Yeelight LED Smart Bulb',
@@ -137,11 +138,11 @@
                 iconLabel: 'Освещение',
                 title: 'Xiaomi Mi Air Purifier 2S',
                 subtitle: 'Включено'
-            }]
+            } ]
         },
         kitchen: {
             title: 'Кухня',
-            items: [{
+            items: [ {
                 icon: 'light2',
                 iconLabel: 'Освещение',
                 title: 'Xiaomi Yeelight LED Smart Bulb',
@@ -151,11 +152,11 @@
                 iconLabel: 'Температура',
                 title: 'Elgato Eve Degree Connected',
                 subtitle: 'Выключено до 17:00'
-            }]
+            } ]
         },
         hall: {
             title: 'Зал',
-            items: [{
+            items: [ {
                 icon: 'light',
                 iconLabel: 'Освещение',
                 title: 'Philips Zhirui',
@@ -165,11 +166,11 @@
                 iconLabel: 'Освещение',
                 title: 'Xiaomi Mi Air Purifier 2S',
                 subtitle: 'Выключено'
-            }]
+            } ]
         },
         lights: {
             title: 'Лампочки',
-            items: [{
+            items: [ {
                 icon: 'light',
                 iconLabel: 'Освещение',
                 title: 'D-Link Omna 180 Cam',
@@ -189,28 +190,28 @@
                 iconLabel: 'Освещение',
                 title: 'Philips Zhirui',
                 subtitle: 'Включено'
-            }]
+            } ]
         },
         cameras: {
             title: 'Камеры',
-            items: [{
+            items: [ {
                 icon: 'light2',
                 iconLabel: 'Освещение',
                 title: 'Xiaomi Mi Air Purifier 2S',
                 subtitle: 'Включено'
-            }]
+            } ]
         }
     };
     for (let i = 0; i < 6; ++i) {
-        TABS.all.items = [...TABS.all.items, ...TABS.all.items];
+        TABS.all.items = [ ...TABS.all.items, ...TABS.all.items ];
     }
     const TABS_KEYS = Object.keys(TABS);
 
     function Main() {
         const ref = React.useRef();
         const initedRef = React.useRef(false);
-        const [activeTab, setActiveTab] = React.useState('');
-        const [hasRightScroll, setHasRightScroll] = React.useState(false);
+        const [ activeTab, setActiveTab ] = React.useState('');
+        const [ hasRightScroll, setHasRightScroll ] = React.useState(false);
 
         React.useEffect(() => {
             if (!activeTab && !initedRef.current) {
@@ -225,7 +226,7 @@
 
         let sizes = [];
         const onSize = size => {
-            sizes = [...sizes, size];
+            sizes = [ ...sizes, size ];
         };
 
         React.useEffect(() => {
@@ -373,7 +374,10 @@
 
                 <div className="section__panel-wrapper" ref={ref}>
                     {TABS_KEYS.map(key =>
-                        <div key={key} role="tabpanel" className={'section__panel' + (key === activeTab ? '' : ' section__panel_hidden')} aria-hidden={key === activeTab ? 'false' : 'true'} id={`panel_${key}`} aria-labelledby={`tab_${key}`}>
+                        <div key={key} role="tabpanel"
+                             className={'section__panel' + (key === activeTab ? '' : ' section__panel_hidden')}
+                             aria-hidden={key === activeTab ? 'false' : 'true'} id={`panel_${key}`}
+                             aria-labelledby={`tab_${key}`}>
                             <ul className="section__panel-list">
                                 {TABS[key].items.map((item, index) =>
                                     <Event
@@ -393,15 +397,14 @@
         </main>;
     }
 
-    setTimeout(() => {
-        const root = ReactDOM.createRoot(document.getElementById('app'));
-        root.render(
-            <>
-                <Header />
-                <Main />
-            </>
-        );
-    }, 100);
+    const root = ReactDOM.createRoot(document.getElementById('app'));
+    root.render(
+        <>
+            <Header/>
+            <Main/>
+        </>
+    );
+
 </script>
 
 </body>
